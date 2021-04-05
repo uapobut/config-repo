@@ -16,15 +16,22 @@ eureka:
 spring:
   cloud:
     loadbalancer.ribbon.enabled: false
-#    gateway:
-#      routes:
-#        - id:
-#          uri: lb://organization-service
-#          predicates:
-#            - Path=/organization/**
-#          filters:
-#            - RewritePath=/organization/(?<path>.*), /$\{path}
-#            - RemoveRequestHeader= Cookie,Set-Cookie
+    gateway:
+        routes:
+        - id: storage-service
+          uri: lb://storage-service
+          predicates:
+          - Path=/storage/**
+          filters:
+          - RewritePath=/storage/(?<path>.*), /$\{path}
+          - RemoveRequestHeader= Cookie,Set-Cookie
+        - id: product-catalog-service
+          uri: lb://product-catalog-service
+          predicates:
+          - Path=/product-catalog/**
+          filters:
+          - RewritePath=/product-catalog/(?<path>.*), /$\{path}
+          - RemoveRequestHeader= Cookie,Set-Cookie
 
 
 management:
