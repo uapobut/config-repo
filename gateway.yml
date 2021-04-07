@@ -25,12 +25,12 @@ spring:
           filters:
           - RewritePath=/storage/(?<path>.*), /$\{path}
           - RemoveRequestHeader= Cookie,Set-Cookie
-        - id: product-catalog-service
-          uri: lb://product-catalog-service
+        - id: staff-management-service
+          uri: lb://staff-management-service
           predicates:
-          - Path=/product-catalog/**
+          - Path=/staff-management/**
           filters:
-          - RewritePath=/product-catalog/(?<path>.*), /$\{path}
+          - RewritePath=/staff-management/(?<path>.*), /$\{path}
           - RemoveRequestHeader= Cookie,Set-Cookie
 
 
