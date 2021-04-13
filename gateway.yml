@@ -17,22 +17,25 @@ spring:
   cloud:
     loadbalancer.ribbon.enabled: false
     gateway:
-        routes:
+      discovery.locator:
+       enabled: true
+       lowerCaseServiceId: true
+      routes:
         - id: storage-service
           uri: lb://storage-service
           predicates:
-          - Path=/storage-service/**
+            - Path=/storage-service/**
           filters:
-          - RewritePath=/storage-service/(?<path>.*), /$\{path}
-          - RemoveRequestHeader= Cookie,Set-Cookie
+            - RewritePath=/storage-service/(?<path>.*), /$\{path}
+            - RemoveRequestHeader= Cookie,Set-Cookie
         - id: staff-management-service
           uri: lb://staff-management-service
           predicates:
-          - Path=/staff-management/**
+            - Path=/staff-management/**
           filters:
-          - RewritePath=/staff-management/(?<path>.*), /$\{path}
-          - RemoveRequestHeader= Cookie,Set-Cookie
-         - id: product-catalog-service
+            - RewritePath=/staff-management/(?<path>.*), /$\{path}
+            - RemoveRequestHeader= Cookie,Set-Cookie
+        - id: product-catalog-service
           uri: lb://product-catalog-service
           predicates:
           - Path=/product-catalog/**
