@@ -42,6 +42,14 @@ spring:
           filters:
           - RewritePath=/product-catalog/(?<path>.*), /$\{path}
           - RemoveRequestHeader= Cookie,Set-Cookie
+        - id: gateway
+          uri: lb://gateway
+          predicates:
+          - Path=/gateway/**
+          filters:
+          - RewritePath=/gateway/(?<path>.*), /$\{path}
+          - RemoveRequestHeader= Cookie,Set-Cookie
+
 
 
 management:
