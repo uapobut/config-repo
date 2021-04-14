@@ -49,3 +49,13 @@ management:
     web:
       exposure:
         include: "*"
+
+keycloak:
+  realm: spmia-realm
+  auth-server-url: http://keycloak:8080/auth
+  ssl-required: external
+  resource: adetails
+  credentials:
+    secret: d1daa730-9c1a-4bcf-b29e-74799a0caf68
+  use-resource-role-mappings: true
+  bearer-only: true
