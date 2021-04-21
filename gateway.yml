@@ -27,7 +27,7 @@ spring:
             - Path=/storage-service/**
           filters:
             - RewritePath=/storage-service/(?<path>.*), /$\{path}
-           # - RemoveRequestHeader= Cookie,Set-Cookie
+            - RemoveRequestHeader= Cookie,Set-Cookie
         - id: staff-management-service
           uri: lb://staff-management-service
           predicates:
